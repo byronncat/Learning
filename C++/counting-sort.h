@@ -1,8 +1,10 @@
-#include <iostream>
+#ifndef COUNTING_SORT_H
+#define COUNTING_SORT_H
+
 #include <vector>
 using namespace std;
 
-int getMax(vector<int> &arr)
+int getMaxCounting(vector<int> &arr)
 {
     int mx = arr[0];
     for (int i = 1; i < arr.size(); i++)
@@ -13,18 +15,15 @@ int getMax(vector<int> &arr)
 
 void countingSort(vector<int> &arr)
 {
-    int max = getMax(arr);
+    int max = getMaxCounting(arr);
     vector<int> count(max + 1, 0);
 
-    // Count occurrences of each number
     for (int i = 0; i < arr.size(); i++)
         count[arr[i]]++;
 
-    // Prefix sum
     for (int i = 1; i <= max; i++)
         count[i] += count[i - 1];
 
-    // Build the output array
     vector<int> output(arr.size());
     for (int i = arr.size() - 1; i >= 0; i--)
     {
@@ -32,16 +31,8 @@ void countingSort(vector<int> &arr)
         count[arr[i]]--;
     }
 
-    // Copy the output array to the original array
     for (int i = 0; i < arr.size(); i++)
         arr[i] = output[i];
 }
 
-int main()
-{
-    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
-    countingSort(arr);
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
-    return 0;
-}
+#endif

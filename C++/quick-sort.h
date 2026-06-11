@@ -1,4 +1,7 @@
-#include <iostream>
+#ifndef QUICK_SORT_H
+#define QUICK_SORT_H
+
+#include <cstdlib>
 #include <vector>
 using namespace std;
 
@@ -6,9 +9,7 @@ int pickPivot(vector<int> &arr, int low, int high)
 {
     int pivotIndex = low + rand() % (high - low + 1);
     swap(arr[pivotIndex], arr[high]);
-
-    int pivot = arr[high];
-    return pivot;
+    return arr[high];
 }
 
 int partition(vector<int> &arr, int low, int high)
@@ -39,11 +40,4 @@ void quickSort(vector<int> &arr, int low = 0, int high = -1)
     }
 }
 
-int main()
-{
-    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
-    quickSort(arr);
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
-    return 0;
-}
+#endif

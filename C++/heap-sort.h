@@ -1,10 +1,12 @@
-#include <iostream>
+#ifndef HEAP_SORT_H
+#define HEAP_SORT_H
+
 #include <vector>
 using namespace std;
 
 void heapify(vector<int> &arr, int n, int i)
 {
-    int largest = i; // Initialize largest as root
+    int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
@@ -25,11 +27,9 @@ void heapSort(vector<int> &arr)
 {
     int n = arr.size();
 
-    // Build heap (rearrange array)
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
 
-    // One by one extract elements from heap
     for (int i = n - 1; i > 0; i--)
     {
         swap(arr[0], arr[i]);
@@ -37,11 +37,4 @@ void heapSort(vector<int> &arr)
     }
 }
 
-int main()
-{
-    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
-    heapSort(arr);
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
-    return 0;
-}
+#endif

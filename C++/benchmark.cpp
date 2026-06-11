@@ -8,33 +8,28 @@
 
 using namespace std;
 
-#define main merge_sort_main
-#include "merge-sort.cpp"
-#undef main
-
-#define main quick_sort_main
-#include "quick-sort.cpp"
-#undef main
-
-#define main radix_sort_main
-#include "radix-sort.cpp"
-#undef main
-
-#define main heap_sort_main
-#include "heap-sort.cpp"
-#undef main
+#include "bubble-sort.h"
+#include "counting-sort.h"
+#include "heap-sort.h"
+#include "merge-sort.h"
+#include "quick-sort.h"
+#include "radix-sort.h"
 
 template <typename SortFunc>
 void runBenchmark(const string &name, SortFunc sortFn, vector<int> data)
 {
+    vector<int> working = data;
+
     auto start = chrono::high_resolution_clock::now();
-    sortFn(data);
+    sortFn(working);
     auto end = chrono::high_resolution_clock::now();
 
+    bool correct = is_sorted(working.begin(), working.end());
     double elapsedMs = chrono::duration<double, milli>(end - start).count();
 
     cout << left << setw(10) << name << " | "
-         << setw(10) << fixed << setprecision(3) << elapsedMs << " ms\n";
+         << setw(10) << fixed << setprecision(3) << elapsedMs
+         << (correct ? " | OK" : " | FAIL") << "\n";
 }
 
 int main()
@@ -45,13 +40,15 @@ int main()
 
     mt19937 rng(42);
     shuffle(input.begin(), input.end(), rng);
-    // for (int i = 0; i < input.size(); i++)
-    //     input[i] = i + 1;
 
     cout << "Sorting benchmark\n";
-    cout << "Algorithm" << setw(10) << " | Time (ms)\n";
+    cout << left << setw(10) << "Algorithm" << setw(13) << " | Time (ms)" << " | Result\n";
     cout << "------------------------------\n";
 
+    // runBenchmark("Bubble", [](vector<int> &arr)
+    //              { bubbleSort(arr); }, input);
+    runBenchmark("Counting", [](vector<int> &arr)
+                 { countingSort(arr); }, input);
     runBenchmark("Merge", [](vector<int> &arr)
                  { mergeSort(arr); }, input);
     runBenchmark("Quick", [](vector<int> &arr)

@@ -1,4 +1,6 @@
-#include <iostream>
+#ifndef BUBBLE_SORT_H
+#define BUBBLE_SORT_H
+
 #include <vector>
 using namespace std;
 
@@ -29,11 +31,4 @@ void enhancedBubbleSort(vector<int> &arr)
     }
 }
 
-int main()
-{
-    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
-    enhancedBubbleSort(arr);
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
-    return 0;
-}
+#endif
