@@ -20,6 +20,10 @@ using namespace std;
 #include "radix-sort.cpp"
 #undef main
 
+#define main heap_sort_main
+#include "heap-sort.cpp"
+#undef main
+
 template <typename SortFunc>
 void runBenchmark(const string &name, SortFunc sortFn, vector<int> data)
 {
@@ -54,6 +58,8 @@ int main()
                  { quickSort(arr); }, input);
     runBenchmark("Radix", [](vector<int> &arr)
                  { radixSort(arr); }, input);
+    runBenchmark("Heap", [](vector<int> &arr)
+                 { heapSort(arr); }, input);
 
     return 0;
 }
