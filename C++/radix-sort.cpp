@@ -48,7 +48,7 @@ void radixSort(vector<int> &arr)
 
 int main()
 {
-    vector<int> arr = {170, 45, 75, 90, 2, 802, 100};
+    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
     radixSort(arr);
     for (int i = 0; i < arr.size(); i++)
         cout << arr[i] << " ";
