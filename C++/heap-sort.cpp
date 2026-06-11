@@ -4,7 +4,7 @@ using namespace std;
 
 void heapify(vector<int> &arr, int n, int i)
 {
-    int largest = i;       // Initialize largest as root
+    int largest = i; // Initialize largest as root
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
@@ -39,8 +39,7 @@ void heapSort(vector<int> &arr)
 
 int main()
 {
-    // vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
-    vector<int> arr = {1, 100, 50, 40, 30, 60, 70, 80, 90, 20};
+    vector<int> arr = {170, 45, 75, 90, 2, 802, 100, 66, 1204};
     heapSort(arr);
     for (int i = 0; i < arr.size(); i++)
         cout << arr[i] << " ";
