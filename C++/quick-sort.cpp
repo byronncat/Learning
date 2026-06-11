@@ -4,10 +4,9 @@ using namespace std;
 
 int pickPivot(vector<int> &arr, int low, int high)
 {
-    // int pivotIndex = low + rand() % (high - low + 1);
-    // swap(arr[pivotIndex], arr[high]);
+    int pivotIndex = low + rand() % (high - low + 1);
+    swap(arr[pivotIndex], arr[high]);
 
-    // int pivot = arr[high];
     int pivot = arr[high];
     return pivot;
 }

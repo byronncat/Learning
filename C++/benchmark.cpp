@@ -35,7 +35,7 @@ void runBenchmark(const string &name, SortFunc sortFn, vector<int> data)
 
 int main()
 {
-    const int size = 1000;
+    const int size = 100000;
     vector<int> input(size);
     iota(input.begin(), input.end(), 1);
 
