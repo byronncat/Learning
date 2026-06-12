@@ -16,6 +16,7 @@ using namespace std;
 #include "merge-sort.h"
 #include "quick-sort.h"
 #include "radix-sort.h"
+#include "timsort.h"
 
 template <typename SortFunc>
 void runBenchmark(const string &name, SortFunc sortFn, vector<int> data)
@@ -51,8 +52,8 @@ int main()
     //              { insertionSort(arr); }, input);
     // runBenchmark("Bubble", [](vector<int> &arr)
     //              { bubbleSort(arr); }, input);
-    runBenchmark("Selection", [](vector<int> &arr)
-                 { selectionSort(arr); }, input);
+    // runBenchmark("Selection", [](vector<int> &arr)
+    //              { selectionSort(arr); }, input);
     runBenchmark("Counting", [](vector<int> &arr)
                  { countingSort(arr); }, input);
     runBenchmark("Merge", [](vector<int> &arr)
@@ -63,6 +64,8 @@ int main()
                  { radixSort(arr); }, input);
     runBenchmark("Heap", [](vector<int> &arr)
                  { heapSort(arr); }, input);
+    runBenchmark("TimSort", [](vector<int> &arr)
+                 { timSort(arr); }, input);
 
     return 0;
 }
