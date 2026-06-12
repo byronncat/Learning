@@ -16,6 +16,7 @@ using namespace std;
 #include "merge-sort.h"
 #include "quick-sort.h"
 #include "radix-sort.h"
+#include "bucket-sort.h"
 #include "timsort.h"
 
 template <typename SortFunc>
@@ -37,9 +38,13 @@ void runBenchmark(const string &name, SortFunc sortFn, vector<int> data)
 
 int main()
 {
-    const int size = 100000;
+    const int size = 100000000;
     vector<int> input(size);
-    iota(input.begin(), input.end(), 1);
+    // iota(input.begin(), input.end(), 1);
+    const int startRange = 1;
+    const int endRange = 7;
+    for (int i = 0; i < size; i++)
+        input[i] = rand() % (endRange - startRange + 1) + startRange;
 
     mt19937 rng(42);
     shuffle(input.begin(), input.end(), rng);
@@ -58,12 +63,14 @@ int main()
                  { countingSort(arr); }, input);
     runBenchmark("Merge", [](vector<int> &arr)
                  { mergeSort(arr); }, input);
-    runBenchmark("Quick", [](vector<int> &arr)
-                 { quickSort(arr); }, input);
+    // runBenchmark("Quick", [](vector<int> &arr)
+    //              { quickSort(arr); }, input);
     runBenchmark("Radix", [](vector<int> &arr)
                  { radixSort(arr); }, input);
     runBenchmark("Heap", [](vector<int> &arr)
                  { heapSort(arr); }, input);
+    runBenchmark("Bucket", [](vector<int> &arr)
+                 { bucketSort(arr); }, input);
     runBenchmark("TimSort", [](vector<int> &arr)
                  { timSort(arr); }, input);
 
