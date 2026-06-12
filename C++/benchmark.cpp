@@ -8,7 +8,9 @@
 
 using namespace std;
 
+#include "insertion-sort.h"
 #include "bubble-sort.h"
+#include "selection-sort.h"
 #include "counting-sort.h"
 #include "heap-sort.h"
 #include "merge-sort.h"
@@ -45,8 +47,12 @@ int main()
     cout << left << setw(10) << "Algorithm" << setw(13) << " | Time (ms)" << " | Result\n";
     cout << "------------------------------\n";
 
+    // runBenchmark("Insertion", [](vector<int> &arr)
+    //              { insertionSort(arr); }, input);
     // runBenchmark("Bubble", [](vector<int> &arr)
     //              { bubbleSort(arr); }, input);
+    runBenchmark("Selection", [](vector<int> &arr)
+                 { selectionSort(arr); }, input);
     runBenchmark("Counting", [](vector<int> &arr)
                  { countingSort(arr); }, input);
     runBenchmark("Merge", [](vector<int> &arr)
